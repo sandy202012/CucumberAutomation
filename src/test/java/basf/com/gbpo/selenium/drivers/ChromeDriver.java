@@ -7,69 +7,37 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.events.EventFiringWebDriver;
 
-import DriverUtil.Driver;
+
 import io.cucumber.core.logging.Logger;
+import io.cucumber.java.BeforeAll;
+import io.github.bonigarcia.wdm.WebDriverManager;
 
 public class ChromeDriver {
 
-	public WebDriver driver;
-	public static String highlight;
-	private OptionsManager optionsManager;
-	private Properties prop;
-   public static ThreadLocal<WebDriver> tlDriver = new ThreadLocal<WebDriver>();
+	private static final WebDriver driver;
 	
-	public static final Logger log = Logger.getLogger(String.valueOf(ChromeDriver.class));
-	public WebDriver initDriver(Properties prop) {
-//		if(prop.getProperty("browser") == null) {
-//			String browserName = System.getProperty("browser");
-//		}
-		String browserName = prop.getProperty("browser");
-		String browserVersion = prop.getProperty("browserversion");
-		log.info("browser name : " + browserName + " and browserversion: " + browserVersion);
+	
+    static void setupClass() {
+    	System.setProperty("webdriver.chrome.driver", "/src/test/java/drivers/chromedriver");
+    	WebDriverManager.chromedriver().setup();
+    	WebDriver driver = new ChromeDriver();
+    	
+    }
 
-		highlight = prop.getProperty("highlight");
+   
 
-		System.out.println("browser name is : " + browserName);
-		optionsManager = new OptionsManager(prop);
-		if (browserName.equalsIgnoreCase("chrome")) {
+    
 
-			if (Boolean.parseBoolean(prop.getProperty("remote"))) {
-				log.info("running test on remote");
-				init_remoteDriver("chrome", browserVersion);
-			} else {
-				log.info("running test on local");
-				WebDriverManager.chromedriver().setup();
-				tlDriver.set(new ChromeDriver(optionsManager.getChromeOptions()));
-			}
+  
+    void test() {
+        // Exercise
+        driver.get("https://bonigarcia.dev/selenium-webdriver-java/");
+        String title = driver.getTitle();
 
-		}
+        
+    }
 
-		else if (browserName.equalsIgnoreCase("firefox")) {
-			WebDriverManager.firefoxdriver().setup();
-
-			if (Boolean.parseBoolean(prop.getProperty("remote"))) {
-				init_remoteDriver("firefox", browserVersion);
-			} else {
-				WebDriverManager.firefoxdriver().setup();
-				tlDriver.set(new FirefoxDriver(optionsManager.getFirefoxOptions()));
-			}
-
-		} else if (browserName.equalsIgnoreCase("safari")) {
-			tlDriver.set(new SafariDriver());
-		}
-
-		else {
-			System.out.println("please pass the right browserName : " + browserName);
-		}
-
-		getDriver().manage().deleteAllCookies();
-		getDriver().manage().window().maximize();
-
-		getDriver().get(prop.getProperty("url"));
-
-		return getDriver();
-
-	}
-		
 }
+	
+		
 }

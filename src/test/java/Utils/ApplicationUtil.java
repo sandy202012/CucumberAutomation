@@ -1,12 +1,12 @@
-package Utils;
+package utils;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import AppXpaths.AppXpathsConstants;
-import DriverUtil.Driver;
+import appxpaths.AppXpathsConstants;
+import driverutil.Driver;
 
 public class ApplicationUtil {
 

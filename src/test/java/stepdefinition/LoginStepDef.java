@@ -1,4 +1,4 @@
-package StepDefinition;
+package stepdefinition;
 
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -8,7 +8,7 @@ public class LoginStepDef {
 	@Given("I navigate to the Application")
 	public void i_navigate_to_the_application() {
 	    // Write code here that turns the phrase above into concrete actions
-	    System.out.println("I navigate to the Application");
+	   
 	}
 
 	@Then("I enter the username and password")

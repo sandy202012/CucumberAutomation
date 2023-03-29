@@ -1,4 +1,4 @@
-package Hooks;
+package hooks;
 
 import org.openqa.selenium.WebDriver;
 
