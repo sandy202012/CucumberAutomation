@@ -1,4 +1,4 @@
-package AppXpaths;
+package appxpaths;
 
 public final class AppXpathsConstants {
 

@@ -1,4 +1,4 @@
-package DriverUtil;
+package driverutil;
 
 import java.time.Duration;
 import java.util.concurrent.TimeoutException;
